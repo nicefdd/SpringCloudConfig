@@ -1,1 +1,28 @@
 
+server:
+  port: 8011
+
+spring:
+  application:
+    name: service-student
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?useSSL=false&autoReconnect=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: root
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://replica1:8001/eureka/,http://replica2:8002/eureka/
+seata:
+  tx-service-group: my_test_tx_group
+  service:
+    vgroup-mapping:
+      my_test_tx_group: seata-server # 此处配置对应Server端配置registry.eureka.application的值
+  registry:
+    type: eureka
+    eureka:
+      service-url: http://replica1:8001/eureka/,http://replica2:8002/eureka/
+      weight: 1
