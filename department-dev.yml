@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: service-department
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hand-train?useSSL=false&autoReconnect=true&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: root
+mybatis:
+  mapper-locations: classpath:mapping/*Mapper.xml
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://replica1:8001/eureka/,http://replica2:8002/eureka/
